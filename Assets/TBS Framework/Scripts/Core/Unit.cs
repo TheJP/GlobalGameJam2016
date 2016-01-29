@@ -87,6 +87,11 @@ public abstract class Unit : MonoBehaviour
         TotalActionPoints = ActionPoints;
     }
 
+    public void SetUnitControl() {
+        if (UnitClicked != null)
+            UnitClicked.Invoke(this, new EventArgs());
+    }
+
     void OnMouseDown()
     {
         if (UnitClicked != null)
@@ -128,6 +133,7 @@ public abstract class Unit : MonoBehaviour
         MarkAsDefending(other);
         HitPoints -= Mathf.Clamp(damage - DefenceFactor, 1, damage);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
                                                                       //This behaviour can be overridden in derived classes.
+        PlayerPrefs.SetInt("Player_" + PlayerNumber + "HitPoints",HitPoints);
         if (UnitAttacked != null)
             UnitAttacked.Invoke(this, new AttackEventArgs(other, this, damage));
 
