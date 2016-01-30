@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Actor : Unit {
-    public bool gotItem;    
+public class Actor : ShadowWorldUnit
+{
+    public bool gotItem;
     public override void Initialize()
     {
         base.Initialize();
-        HitPoints = PlayerPrefs.GetInt("Player_"+PlayerNumber+"_Hitpoints");
+        HitPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_Hitpoints");
         if (HitPoints == 0)
             HitPoints = 1;
         AttackFactor = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_AttackFactor");
@@ -22,11 +23,11 @@ public class Actor : Unit {
 
     public override void MarkAsAttacking(Unit other)
     {
-        StartCoroutine(Jerk(other));
+        //StartCoroutine(Jerk(other));
     }
     public override void MarkAsDefending(Unit other)
     {
-        
+
     }
     public override void MarkAsDestroyed()
     {
@@ -89,7 +90,8 @@ public class Actor : Unit {
         }
     }
 
-    public void ThrowItem() {
+    public void ThrowItem()
+    {
         gotItem = false;
         Cell.hasItem = true;
         Cell.GetComponent<FloorTile>().OnLeftItem();

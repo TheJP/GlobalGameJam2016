@@ -18,9 +18,9 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
     public List<Cell> GenerateGrid()
     {
         var result = new List<Cell>();
-        for (int i = 0; i < width; i++)
+        for (int j = 0; j < height; j++)
         {
-            for (int j = 0; j < height; j++)
+            for (int i = 0; i < width; i++)
             {
                 var square = Instantiate(floorPrefab);
                 var squareSize = square.GetComponent<Cell>().GetCellDimensions();
