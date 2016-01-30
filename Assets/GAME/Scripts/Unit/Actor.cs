@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Actor : ShadowWorldUnit
 {
-    public bool gotItem;
+    private ItemBase item = null;
+    public bool HasItem { get { return item != null; } }
+
     public override void Initialize()
     {
         base.Initialize();
@@ -14,6 +16,16 @@ public class Actor : ShadowWorldUnit
         MovementPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_MovementPoints");
         ActionPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_ActionPoints");
         DefenceFactor = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_DefenceFactor");
+        UnitMoved += ActorUnitMoved;
+    }
+
+    private void ActorUnitMoved(object sender, MovementEventArgs e)
+    {
+        var floor = Cell.GetComponent<FloorTile>();
+        if (floor != null)
+        {
+            if (floor.HasItem && !HasItem) { this.item = floor.RemoveItem(); }
+        }
     }
 
     public override void OnUnitDeselected()
@@ -69,11 +81,6 @@ public class Actor : ShadowWorldUnit
     }
     public override void MarkAsFinished()
     {
-        if (Cell.hasItem && !gotItem)
-        {
-            Cell.hasItem = false;
-            Cell.GetComponent<FloorTile>().OnLeftItem();
-        }
         SetColor(Color.gray);
     }
     public override void UnMark()
@@ -92,8 +99,11 @@ public class Actor : ShadowWorldUnit
 
     public void ThrowItem()
     {
-        gotItem = false;
-        Cell.hasItem = true;
-        Cell.GetComponent<FloorTile>().OnLeftItem();
+        var floor = Cell.GetComponent<FloorTile>();
+        if (floor != null)
+        {
+            floor.AddItem(this.item);
+            this.item = null;
+        }
     }
 }
