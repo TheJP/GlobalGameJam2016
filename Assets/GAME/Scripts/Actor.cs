@@ -2,23 +2,17 @@
 using System.Collections;
 
 public class Actor : Unit {
-
-    public bool gotItem;
-    public GameObject item;
-    
+    public bool gotItem;    
     public override void Initialize()
     {
         base.Initialize();
         HitPoints = PlayerPrefs.GetInt("Player_"+PlayerNumber+"_Hitpoints");
+        if (HitPoints == 0)
+            HitPoints = 1;
         AttackFactor = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_AttackFactor");
         MovementPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_MovementPoints");
         ActionPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_ActionPoints");
         DefenceFactor = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_DefenceFactor");
-        /*        HitPoints = Random.Range(6, 10);
-        AttackFactor = Random.Range(1,8);
-        MovementPoints = Random.Range(5, 10);
-        ActionPoints = Random.Range(1, 3);
-        DefenceFactor = Random.Range(0, 3);*/
     }
 
     public override void OnUnitDeselected()
@@ -74,6 +68,11 @@ public class Actor : Unit {
     }
     public override void MarkAsFinished()
     {
+        if (Cell.hasItem && !gotItem)
+        {
+            Cell.hasItem = false;
+            Cell.GetComponent<FloorTile>().OnLeftItem();
+        }
         SetColor(Color.gray);
     }
     public override void UnMark()
@@ -88,5 +87,11 @@ public class Actor : Unit {
         {
             _renderer.color = color;
         }
+    }
+
+    public void ThrowItem() {
+        gotItem = false;
+        Cell.hasItem = true;
+        Cell.GetComponent<FloorTile>().OnLeftItem();
     }
 }

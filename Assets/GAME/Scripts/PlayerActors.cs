@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerActors : Player {
 
+    public GameManager manager;
     private CellGrid _cellGrid;
 
     public override void Play(CellGrid cellGrid)
@@ -19,7 +20,7 @@ public class PlayerActors : Player {
         var myUnits = _cellGrid.Units.FindAll(u => u.PlayerNumber.Equals(PlayerNumber)).ToList();
         foreach (var unit in myUnits.OrderByDescending(u => u.Cell.GetNeighbours(_cellGrid.Cells).FindAll(u.IsCellTraversable).Count))
         {
-            unit.SetUnitControl();
+            manager.actualPlayer = unit.GetComponent<Actor>();
         }
     }
 }
