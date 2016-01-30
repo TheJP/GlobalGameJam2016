@@ -10,6 +10,11 @@ public class InGameSetUp : MonoBehaviour {
     int playerNumber = 1;
     int shadowLord = 0;
 
+    void Start() {
+        PlayerPrefs.SetInt("ShadowLord_Active", shadowLord);
+        PlayerPrefs.SetInt("Players_Number", playerNumber);
+    }
+
     public void SetCharacterParameters() {
         for (int i = 0; i < playerNumber; i++) {
             PlayerPrefs.SetInt("Player_" + i + "_Hitpoints", Random.Range(6, 10));
