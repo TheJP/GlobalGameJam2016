@@ -4,27 +4,31 @@ using System;
 
 public class FloorTile : Square
 {
-
     public Sprite defaultSprite;
     public Sprite highlightedSprite;
     public Sprite markedAsPathSprite;
     public Sprite markedAsReachableSprite;
+    public Sprite hasItemSprite;
 
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Update()
-    {
-
+        if (hasItem)
+            spriteRenderer.sprite = hasItemSprite;
     }
 
     public override Vector3 GetCellDimensions()
     {
         return 0.98f * GetComponent<SpriteRenderer>().bounds.size;
+    }
+
+    public void OnLeftItem() {
+        if(hasItem)
+            spriteRenderer.sprite = hasItemSprite;
+        else
+            spriteRenderer.sprite = defaultSprite;
     }
 
     public override void MarkAsHighlighted()
