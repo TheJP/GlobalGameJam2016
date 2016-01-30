@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour {
     public Actor actualPlayer;
     public int playerEscaped = 0;
 
-	// Use this for initialization
-	void Start () {
+    private HashSet<Targets> acquiredTargets = new HashSet<Targets>();
+
+    // Use this for initialization
+    void Start () {
         FindObjectOfType<CellGrid>().GameEnded += GameEnded;
 	}
 
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour {
             gridManager.EndTurn();
         if (Input.GetButtonDown("ThrowItem"))
             actualPlayer.ThrowItem();
+        //Add player movement with keyboard inputs
         if(actualPlayer != null)
         {
             Vector3? position = null;
@@ -46,6 +49,26 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
+
+    /// <summary>Adds the given target to the set of acquired targets in this room.</summary>
+    public void AcquiredTarget(Targets target)
+    {
+        if (Enum.IsDefined(typeof(Targets), target))
+        {
+            foreach(var player in gridManager.Units.Where(u => u is Actor).Select(u => u as Actor))
+            {
+                var floor = player.Cell.GetComponent<FloorTile>();
+                if(floor != null && floor.Rune != null && floor.Rune.Value == target) { player.RemoveLater(); }
+            }
+            acquiredTargets.Add(target);
+        }
+    }
+
+    /// <summary>Removes the given target from the set of acquired targets in this room.</summary>
+    public void LostTarget(Targets target) { acquiredTargets.Remove(target); }
+
+    /// <summary>Checks if the specified target was yet acquired.</summary>
+    public bool HasAcquiredTarget(Targets target) { return acquiredTargets.Contains(target); }
 
     public void GameEnded(object sender, System.EventArgs e) {
         if (playerEscaped > 0)
