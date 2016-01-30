@@ -16,6 +16,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     void Start()
     {
         roomGenerator = GetComponent<RoomGenerator>();
+        numberOfPlayers = PlayerPrefs.GetInt("Players_Number",1);
     }
 
     /// <summary>
