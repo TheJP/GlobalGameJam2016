@@ -6,7 +6,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
 {
     public RoomGenerator roomGenerator;
     public Transform unitsParent;
-    public GameObject playerPrefab;
+    public GameObject[] playerPrefabs;
     public GameObject shadowStalker;
 
     public int numberOfPlayers = 2;
@@ -75,7 +75,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
             Cell cell;
             do { cell = cells[position--]; }
             while (!cell.IsSpawnable());
-            var player = (GameObject)Instantiate(playerPrefab, cell.transform.position, Quaternion.identity);
+            var player = (GameObject)Instantiate(playerPrefabs[i], cell.transform.position, Quaternion.identity);
             player.transform.parent = unitsParent;
             //Initialize unit
             cell.IsTaken = true;

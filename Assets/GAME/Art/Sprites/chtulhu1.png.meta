@@ -30,7 +30,7 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -131,7 +131,7 @@ TextureImporter:
         - {x: 16, y: 11}
         - {x: 12, y: 16}
     outline: []
-  spritePackingTag: 
+  spritePackingTag: ShadowGame
   userData: 
   assetBundleName: 
   assetBundleVariant: 
