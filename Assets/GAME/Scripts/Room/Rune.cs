@@ -18,7 +18,7 @@ public class Rune : MonoBehaviour
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = runeSprites[Random.Range(0, runeSprites.Length - 1)];
+        GetComponent<SpriteRenderer>().sprite = runeSprites[Random.Range(0, runeSprites.Length)];
     }
 
     void FixedUpdate()

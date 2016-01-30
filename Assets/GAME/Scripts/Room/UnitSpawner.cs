@@ -47,7 +47,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     /// <param name="max">Maximum number of enemies to be spawned.</param>
     private void SpawnEnemiesOfType(List<Cell> cells, List<Unit> result, GameObject prefab, int min, int max)
     {
-        var enemies = Random.Range(min, max);
+        var enemies = Random.Range(min, max + 1);
         for (int i = 0; i < enemies; ++i)
         {
             //Choose cell where the shadow stalker should be spawned

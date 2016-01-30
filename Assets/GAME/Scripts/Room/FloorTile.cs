@@ -38,9 +38,9 @@ public class FloorTile : Square
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        isCracked = Random.Range(0, 7) == 0;
-        if (isCracked) { spriteRenderer.sprite = crackedSprites[Random.Range(0, crackedSprites.Length - 1)]; }
-        else { spriteRenderer.sprite = regularSprites[Random.Range(0, regularSprites.Length - 1)]; }
+        isCracked = Random.Range(0, regularPerCrackedSprite) == 0;
+        if (isCracked) { spriteRenderer.sprite = crackedSprites[Random.Range(0, crackedSprites.Length)]; }
+        else { spriteRenderer.sprite = regularSprites[Random.Range(0, regularSprites.Length)]; }
     }
 
     public void AddItem(ItemBase item)
