@@ -68,7 +68,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
             Cell cell;
             do { cell = cells.GetRandomElement(); }
             while (cell.IsTaken);
-            var enemyObject = (GameObject)Instantiate(prefab, cell.transform.position, Quaternion.identity);
+            var enemyObject = (GameObject)Instantiate(prefab, cell.transform.position - (0.1f * Vector3.forward), Quaternion.identity);
             enemyObject.transform.parent = unitsParent.transform;
             //Initialize unit
             var unit = enemyObject.GetComponent<Unit>();
