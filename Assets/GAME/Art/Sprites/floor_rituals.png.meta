@@ -15,7 +15,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -224,7 +224,7 @@ TextureImporter:
         - {x: -14, y: 16}
         - {x: -14, y: -2}
     outline: []
-  spritePackingTag: 
+  spritePackingTag: ShadowGame
   userData: 
   assetBundleName: 
   assetBundleVariant: 
