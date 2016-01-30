@@ -33,11 +33,10 @@ public class FloorTile : Square
     private ItemBase item = null;
     public bool HasItem { get { return item != null; } }
     private bool isCracked;
-    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        var spriteRenderer = GetComponent<SpriteRenderer>();
         isCracked = Random.Range(0, regularPerCrackedSprite) == 0;
         if (isCracked) { spriteRenderer.sprite = crackedSprites[Random.Range(0, crackedSprites.Length)]; }
         else { spriteRenderer.sprite = regularSprites[Random.Range(0, regularSprites.Length)]; }
@@ -64,21 +63,21 @@ public class FloorTile : Square
 
     public override void MarkAsHighlighted()
     {
-        spriteRenderer.color = Color.red;
+        GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public override void MarkAsPath()
     {
-        spriteRenderer.color = Color.yellow;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
     }
 
     public override void MarkAsReachable()
     {
-        spriteRenderer.color = Color.green;
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public override void UnMark()
     {
-        spriteRenderer.color = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
