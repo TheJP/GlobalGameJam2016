@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour {
             var flameIndicator = Instantiate(flameItemIndicatorPrefab);
             var indicatorScript = flameIndicator.GetComponent<FlameItemIndicator>();
             if (indicatorScript != null) { indicatorScript.Target = target; }
-            flameIndicator.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            flameIndicator.transform.SetParent(flameItemIndicatorPanel.transform, false);
             flameIndicator.transform.position += scale * Vector3.left;
             scale += 40;
         }
