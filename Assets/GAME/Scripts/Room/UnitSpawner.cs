@@ -7,11 +7,15 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     public RoomGenerator roomGenerator;
     public Transform unitsParent;
     public GameObject[] playerPrefabs;
-    public GameObject shadowStalker;
+    public GameObject[] enemies;
 
     public int numberOfPlayers = 2;
-    public int minimumShadowStalker = 1;
-    public int maximumShadowStalker = 5;
+    public int minimumShadowStalker = 0;
+    public int maximumShadowStalker = 3;
+    public int minimumShadowLurker = 1;
+    public int maximumShadowLurker = 5;
+    public int minimumShadowArchDemon = 0;
+    public int maximumShadowArchDemon = 1;
 
     void Start()
     {
@@ -34,7 +38,9 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     /// <summary>Spawns all needed enemies.</summary>
     private void SpawnEnemies(List<Cell> cells, List<Unit> result)
     {
-        SpawnEnemiesOfType(cells, result, shadowStalker, minimumShadowStalker, maximumShadowStalker);
+        SpawnEnemiesOfType(cells, result, enemies[0], minimumShadowStalker, maximumShadowStalker);
+        SpawnEnemiesOfType(cells, result, enemies[1], minimumShadowLurker, maximumShadowLurker);
+        SpawnEnemiesOfType(cells, result, enemies[2], minimumShadowArchDemon, maximumShadowArchDemon);
     }
 
     /// <summary>
