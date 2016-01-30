@@ -76,7 +76,7 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
     {
         foreach(var target in targets)
         {
-            var item = Instantiate(itemPrefabs[Random.Range(0, itemPrefabs.Length - 1)]);
+            var item = Instantiate(itemPrefabs[Random.Range(0, itemPrefabs.Length)]);
             var itemScript = item.GetComponent<ItemBase>();
             itemScript.Target = target;
             Cell cell;
