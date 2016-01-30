@@ -1,22 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class FloorTile : Square
 {
-    public Sprite defaultSprite;
-    public Sprite highlightedSprite;
-    public Sprite markedAsPathSprite;
-    public Sprite markedAsReachableSprite;
-    public Sprite hasItemSprite;
+    public Sprite[] crackedSprites;
+    public Sprite[] regularSprites;
+    /// <summary>Determines how many regular sprites should exist in comparison to cracked ones.</summary>
+    public int regularPerCrackedSprite = 7;
 
+    private bool isCracked;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (hasItem)
-            spriteRenderer.sprite = hasItemSprite;
+        isCracked = Random.Range(0, 7) == 0;
+        if (isCracked) { spriteRenderer.sprite = crackedSprites[Random.Range(0, crackedSprites.Length - 1)]; }
+        else { spriteRenderer.sprite = regularSprites[Random.Range(0, regularSprites.Length - 1)]; }
+        if (hasItem) { AddItem(); }
+    }
+
+    private void AddItem()
+    {
+        Debug.Log("Add Item");
+    }
+    private void RemoveItem()
+    {
+        Debug.Log("Remove Item");
     }
 
     public override Vector3 GetCellDimensions()
@@ -25,29 +35,27 @@ public class FloorTile : Square
     }
 
     public void OnLeftItem() {
-        if(hasItem)
-            spriteRenderer.sprite = hasItemSprite;
-        else
-            spriteRenderer.sprite = defaultSprite;
+        if (hasItem) { AddItem(); }
+        else { RemoveItem(); }
     }
 
     public override void MarkAsHighlighted()
     {
-        spriteRenderer.sprite = highlightedSprite;
+        spriteRenderer.color = Color.red;
     }
 
     public override void MarkAsPath()
     {
-        spriteRenderer.sprite = markedAsPathSprite;
+        spriteRenderer.color = Color.yellow;
     }
 
     public override void MarkAsReachable()
     {
-        spriteRenderer.sprite = markedAsReachableSprite;
+        spriteRenderer.color = Color.green;
     }
 
     public override void UnMark()
     {
-        spriteRenderer.sprite = defaultSprite;
+        spriteRenderer.color = Color.white;
     }
 }
