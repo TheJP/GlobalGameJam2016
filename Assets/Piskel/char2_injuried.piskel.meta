@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Piskel/char2_injuried.piskel.meta
 guid: a5bbb11ddf780fe41add28a321cb10cd
 timeCreated: 1454166017
 licenseType: Free
+=======
+guid: 0c085e6911250034cbf2bfdde04843fb
+timeCreated: 1454166234
+licenseType: Pro
+>>>>>>> 958b3dda2f974299e7d888ae048dfaa4aca198b1:Assets/Piskel/char2_injuried.piskel.meta
 DefaultImporter:
   userData: 
   assetBundleName: 

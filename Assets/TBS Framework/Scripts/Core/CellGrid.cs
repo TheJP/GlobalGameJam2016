@@ -139,7 +139,11 @@ public class CellGrid : MonoBehaviour
         if (totalPlayersAlive.Count == 1)
         {
             if(GameEnded != null)
+            {
                 GameEnded.Invoke(this, new EventArgs());
+                FindObjectOfType<GameManager>().GameEnded();
+            }
+                
         }
     }
     

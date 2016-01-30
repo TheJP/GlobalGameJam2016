@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Piskel/normalo.piskel.meta
 guid: a8efb8b878f3fdf438addc32b70d9498
 timeCreated: 1454166017
 licenseType: Free
+=======
+guid: 2c43703476a85e24593a5b360d5e7f89
+timeCreated: 1454166234
+licenseType: Pro
+>>>>>>> 958b3dda2f974299e7d888ae048dfaa4aca198b1:Assets/Piskel/normalo.piskel.meta
 DefaultImporter:
   userData: 
   assetBundleName: 
