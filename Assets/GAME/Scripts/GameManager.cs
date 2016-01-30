@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+    public GameObject teleportEffect;
     public CellGrid gridManager;
     public Actor actualPlayer;
     public int playerEscaped = 0;
@@ -88,5 +89,9 @@ public class GameManager : MonoBehaviour {
 
     void StageClear() {
         FindObjectOfType<StartOptions>().StartButtonClicked();
+    }
+
+    public void SpawnTeleport(Vector3 pos) {
+        Instantiate(teleportEffect, pos, Quaternion.identity);
     }
 }

@@ -1,13 +1,17 @@
 fileFormatVersion: 2
 guid: ec265ef3cd83dd146b5a769820b656d4
-timeCreated: 1454173960
-licenseType: Free
+timeCreated: 1454177311
+licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: char6_injured_0
+    21300002: char6_injured_1
+    21300004: char6_injured_2
+    21300006: char6_injured_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -26,32 +30,110 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: char6_injured_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 1}
+        - {x: -9, y: -12}
+        - {x: 7, y: -12}
+        - {x: 11, y: -11}
+        - {x: 11, y: 11}
+        - {x: 10, y: 15}
+        - {x: -13, y: 15}
+        - {x: -15, y: 14}
+    - name: char6_injured_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 14}
+        - {x: -15, y: -2}
+        - {x: -9, y: -15}
+        - {x: 4, y: -15}
+        - {x: 11, y: -7}
+        - {x: 11, y: 8}
+        - {x: 7, y: 14}
+    - name: char6_injured_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -5}
+        - {x: -6, y: -12}
+        - {x: 6, y: -12}
+        - {x: 11, y: -8}
+        - {x: 11, y: 10}
+        - {x: 6, y: 15}
+    - name: char6_injured_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 14}
+        - {x: -13, y: 14}
+        - {x: -15, y: 12}
+        - {x: -15, y: 5}
+        - {x: -14, y: 0}
+        - {x: -12, y: -6}
+        - {x: -6, y: -14}
+        - {x: -3, y: -15}
+        - {x: 5, y: -15}
+        - {x: 12, y: -5}
+        - {x: 12, y: -2}
+        - {x: 11, y: 7}
     outline: []
-  spritePackingTag: 
+  spritePackingTag: ShadowGame
   userData: 
   assetBundleName: 
   assetBundleVariant: 
