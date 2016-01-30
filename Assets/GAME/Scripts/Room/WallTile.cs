@@ -15,11 +15,9 @@ public class WallTile : Square
     public bool useDefaultSprite = false;
     public WallType WallType { get; set; }
 
-    private SpriteRenderer spriteRenderer;
-
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = useDefaultSprite ? defaultSprite : wallSprites[Random.Range(0, wallSprites.Length - 1)];
         IsTaken = true;
     }
@@ -34,21 +32,21 @@ public class WallTile : Square
 
     public override void MarkAsHighlighted()
     {
-        spriteRenderer.color = Color.red;
+        GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public override void MarkAsPath()
     {
-        spriteRenderer.color = Color.yellow;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
     }
 
     public override void MarkAsReachable()
     {
-        spriteRenderer.color = Color.green;
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public override void UnMark()
     {
-        spriteRenderer.color = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
