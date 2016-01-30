@@ -24,6 +24,7 @@ public class InGameSetUp : MonoBehaviour {
     public void SetShadowLord() {
         shadowLord = shadowLord == 0 ? 1 : 0;
         shadowLordText.text = shadowLord == 1 ? "Shadow Lord: \n Yes" : "Shadow Lord: \n No";
+        PlayerPrefs.SetInt("Enemy_Controlled", shadowLord);
     }
 
     public void SetPlayerNumber() {
@@ -31,6 +32,7 @@ public class InGameSetUp : MonoBehaviour {
             playerNumber++;
         else
             playerNumber = 1;
+        PlayerPrefs.SetInt("Players_Number",playerNumber);
         playerNumberText.text = "Number of Players: \n" + playerNumber;
     }
 }
