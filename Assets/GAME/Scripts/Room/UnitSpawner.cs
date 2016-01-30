@@ -68,7 +68,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     private void SpawnPlayers(List<Cell> cells, List<Unit> result)
     {
         //Spawn players in the middle of the bottom layer
-        var position = roomGenerator.width / 2 - numberOfPlayers / 2 + 1;
+        var position = roomGenerator.width / 2 - numberOfPlayers / 2 + 1 + roomGenerator.width;
         for (int i = 0; i < numberOfPlayers; ++i)
         {
             Cell cell;

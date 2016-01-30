@@ -26,8 +26,12 @@ public class Actor : ShadowWorldUnit
         {
             if (floor.HasItem && !HasItem) { this.item = floor.RemoveItem(); }
         }
-        var cameraController = Camera.current.GetComponent<CameraController>();
-        cameraController.target = e.DestinationCell.transform;
+        //Move camera along with the player
+        if (Camera.current != null)
+        {
+            var cameraController = Camera.current.GetComponent<CameraController>();
+            if (cameraController != null) { cameraController.target = e.DestinationCell.transform; }
+        }
     }
 
     public override void OnUnitDeselected()

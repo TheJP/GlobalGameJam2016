@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class RoomGenerator : MonoBehaviour, ICellGridGenerator
 {
@@ -12,6 +13,9 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
     public int height = 20;
 
     private Targets[] targets = TargetExtensions.GetTargets();
+    private const int WallProbability = 25;
+    private const int ContinueWallBonus = 9;
+    private const int BranchWallBonus = 2;
 
     /// <summary>
     /// Cretes room floor and walls.
@@ -20,11 +24,24 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
     public List<Cell> GenerateGrid()
     {
         var result = new List<Cell>();
-        for (int j = 0; j < height; j++)
+        WallType? previousWallType = null;
+        for (int j = 0; j < height; ++j) 
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < width; ++i)
             {
-                var square = Instantiate(floorPrefab);
+                var isOuterWall = j <= 0 || i <= 0 || j + 1 >= height || i + 1 >= width;
+                var isHorizontalWall = !isOuterWall && Random.Range(0, WallProbability) - WallBonus(previousWallType, WallType.Horizontal) <= 0;
+                var isVerticalWall = !isOuterWall && !isHorizontalWall && Random.Range(0, WallProbability) - WallBonus(GetWallType(result[result.Count - width]), WallType.Vertical) <= 0;
+                var square = Instantiate(isOuterWall || isHorizontalWall || isVerticalWall ? wallPrefab : floorPrefab);
+                if(isOuterWall || isHorizontalWall || isVerticalWall)
+                {
+                    var wallType = isOuterWall ? WallType.OuterWall : (isHorizontalWall ? WallType.Horizontal : WallType.Vertical);
+                    square.GetComponent<WallTile>().WallType = wallType;
+                    previousWallType = wallType;
+                }
+                else { previousWallType = null; }
+                if (isOuterWall){ square.GetComponent<WallTile>().UseDefaultSprite(); }
+
                 var squareSize = square.GetComponent<Cell>().GetCellDimensions();
 
                 square.transform.position = new Vector3(i * squareSize.x, j * squareSize.y, 0);
@@ -53,5 +70,20 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
             var floor = cell.GetComponent<FloorTile>();
             floor.AddItem(itemScript);
         }
+    }
+
+    private int WallBonus(WallType? wallType, WallType reference)
+    {
+        if (!wallType.HasValue) { return 0; }
+        if (wallType.Value == reference) { return ContinueWallBonus; }
+        if (wallType.Value == WallType.OuterWall) { return BranchWallBonus; }
+        return 0;
+    }
+
+    private WallType? GetWallType(Cell cell)
+    {
+        var wall = cell.GetComponent<WallTile>();
+        if (wall != null) { return wall.WallType; }
+        return null;
     }
 }
