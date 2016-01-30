@@ -145,7 +145,7 @@ public abstract class Unit : MonoBehaviour
         }
     }
 
-    public void RemoveLater() { Invoke("RemoveDelegate", 0.5f); }
+    public void RemoveLater() { Invoke("RemoveDelegate", 1.0f); }
     private void RemoveDelegate() { Remove(); }
     private void Remove(Unit attacker = null, int damage = 0)
     {
