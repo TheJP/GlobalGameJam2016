@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: d5625d0f06dbae04284da5debfe9fb02
-timeCreated: 1454156326
+guid: 8e4456cbf33048546a5b634edfbe0fbd
+timeCreated: 1454156296
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: spike_0
-    21300002: spike_1
-    21300004: spike_2
-    21300006: spike_3
+    21300000: char3_0
+    21300002: char3_1
+    21300004: char3_2
+    21300006: char3_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: spike_0
+    - name: char3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -65,13 +65,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12, y: -7}
-        - {x: -12, y: -15}
-        - {x: 11, y: -15}
-        - {x: 11, y: -8}
-        - {x: 9, y: -6}
-        - {x: -10, y: -6}
-    - name: spike_1
+      - - {x: 2, y: 15}
+        - {x: -2, y: 15}
+        - {x: -9, y: 14}
+        - {x: -10, y: 10}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 10, y: 5}
+        - {x: 9, y: 13}
+    - name: char3_1
       rect:
         serializedVersion: 2
         x: 32
@@ -82,13 +84,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 0}
-        - {x: -12, y: -7}
-        - {x: -12, y: -15}
-        - {x: 11, y: -15}
-        - {x: 11, y: -8}
-        - {x: 3, y: 0}
-    - name: spike_2
+      - - {x: -3, y: 14}
+        - {x: -9, y: 13}
+        - {x: -10, y: 11}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 10, y: 6}
+        - {x: 3, y: 14}
+    - name: char3_2
       rect:
         serializedVersion: 2
         x: 64
@@ -99,13 +102,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 6}
-        - {x: -12, y: -7}
-        - {x: -12, y: -15}
-        - {x: 11, y: -15}
-        - {x: 11, y: -8}
-        - {x: 1, y: 6}
-    - name: spike_3
+      - - {x: 2, y: 15}
+        - {x: -2, y: 15}
+        - {x: -9, y: 14}
+        - {x: -10, y: 10}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 10, y: 5}
+        - {x: 9, y: 13}
+    - name: char3_3
       rect:
         serializedVersion: 2
         x: 96
@@ -116,13 +121,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12, y: -15}
-        - {x: 11, y: -15}
-        - {x: 11, y: -7}
-        - {x: 4, y: 10}
-        - {x: 0, y: 13}
-        - {x: -4, y: 13}
-        - {x: -12, y: -7}
+      - - {x: 2, y: 14}
+        - {x: -2, y: 14}
+        - {x: -6, y: 10}
+        - {x: -10, y: 5}
+        - {x: -10, y: -16}
+        - {x: 10, y: -16}
+        - {x: 10, y: 7}
+        - {x: 9, y: 13}
     outline: []
   spritePackingTag: 
   userData: 

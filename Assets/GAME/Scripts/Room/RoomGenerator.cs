@@ -14,8 +14,8 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
 
     private Targets[] targets = TargetExtensions.GetTargets();
     private const int WallProbability = 25;
-    private const int ContinueWallBonus = 9;
-    private const int BranchWallBonus = 2;
+    private const int ContinueWallBonus = 12;
+    private const int BranchWallBonus = -2;
 
     /// <summary>
     /// Cretes room floor and walls.
