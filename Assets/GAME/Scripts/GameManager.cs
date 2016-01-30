@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.J)) 
+        if (Input.GetButtonDown("NextTurn"))
             gridManager.EndTurn();
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetButtonDown("ThrowItem"))
             actualPlayer.ThrowItem();
 	}
 }

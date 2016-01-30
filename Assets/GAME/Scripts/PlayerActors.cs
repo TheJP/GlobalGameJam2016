@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerActors : Player {
+class PlayerActors : HumanPlayer {
 
     public GameManager manager;
-    private CellGrid _cellGrid;
+    public CameraController cameraController;
 
     public override void Play(CellGrid cellGrid)
     {
-        cellGrid.CellGridState = new CellGridStateAiTurn(cellGrid);
-        _cellGrid = cellGrid;
-        SelectCharacter();
+        base.Play(cellGrid);
+        SelectCharacter(cellGrid);
     }
 
-    void SelectCharacter() {
-        var myUnits = _cellGrid.Units.FindAll(u => u.PlayerNumber.Equals(PlayerNumber)).ToList();
-        foreach (var unit in myUnits.OrderByDescending(u => u.Cell.GetNeighbours(_cellGrid.Cells).FindAll(u.IsCellTraversable).Count))
+    void SelectCharacter(CellGrid cellGrid) {
+        var unit = cellGrid.Units.FindAll(u => u.PlayerNumber.Equals(PlayerNumber)).FirstOrDefault();
+        if(unit != null)
         {
             manager.actualPlayer = unit.GetComponent<Actor>();
+            cameraController.target = unit.transform;
         }
     }
 }
