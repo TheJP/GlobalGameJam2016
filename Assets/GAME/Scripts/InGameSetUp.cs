@@ -23,7 +23,7 @@ public class InGameSetUp : MonoBehaviour {
 
     public void SetShadowLord() {
         shadowLord = shadowLord == 0 ? 1 : 0;
-        shadowLordText.text = shadowLord == 1 ? "Shadow Lord: \n Yes" : "Shadow Lord: \n No";
+        shadowLordText.text = shadowLord == 1 ? "Shadow Lord:\n"+"Yes" : "Shadow Lord:\n" + "No";
         PlayerPrefs.SetInt("Enemy_Controlled", shadowLord);
     }
 
