@@ -25,6 +25,7 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
     {
         var result = new List<Cell>();
         WallType? previousWallType = null;
+        var runes = new Stack<Targets>(TargetExtensions.GetTargets());
         for (int j = 0; j < height; ++j) 
         {
             for (int i = 0; i < width; ++i)
@@ -33,7 +34,7 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
                 var isHorizontalWall = !isOuterWall && Random.Range(0, WallProbability) - WallBonus(previousWallType, WallType.Horizontal) <= 0;
                 var isVerticalWall = !isOuterWall && !isHorizontalWall && Random.Range(0, WallProbability) - WallBonus(GetWallType(result[result.Count - width]), WallType.Vertical) <= 0;
                 var square = Instantiate(isOuterWall || isHorizontalWall || isVerticalWall ? wallPrefab : floorPrefab);
-                if(isOuterWall || isHorizontalWall || isVerticalWall)
+                if (isOuterWall || isHorizontalWall || isVerticalWall)
                 {
                     var wallType = isOuterWall ? WallType.OuterWall : (isHorizontalWall ? WallType.Horizontal : WallType.Vertical);
                     square.GetComponent<WallTile>().WallType = wallType;
@@ -51,8 +52,23 @@ public class RoomGenerator : MonoBehaviour, ICellGridGenerator
                 square.transform.parent = cellsParent;
             }
         }
+        SpawnRunes(result);
         SpawnItems(result);
         return result;
+    }
+
+    /// <summary>Spawns run places for every posible target.</summary>
+    private void SpawnRunes(List<Cell> cells)
+    {
+        foreach (var target in targets)
+        {
+            Cell cell;
+            do { cell = cells.GetRandomElement(); }
+            while (!cell.IsSpawnable());
+            //If IsSpawnable returned true it has to be a floor tile.
+            var floor = cell.GetComponent<FloorTile>();
+            floor.Rune = target;
+        }
     }
 
     /// <summary>Spawns items of all targets in the room.</summary>

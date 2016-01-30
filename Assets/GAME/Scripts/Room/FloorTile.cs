@@ -5,31 +5,30 @@ public class FloorTile : Square
 {
     public Sprite[] crackedSprites;
     public Sprite[] regularSprites;
+    public Rune runePrefab;
     /// <summary>Determines how many regular sprites should exist in comparison to cracked ones.</summary>
     public int regularPerCrackedSprite = 7;
 
-    private bool isRunic = false;
-    public bool IsRunic
+    private Rune rune;
+    public Targets? Rune
     {
-        get { return isRunic; }
+        get { return rune == null ? (Targets?)null : rune.Target; }
         set
         {
-            if (isRunic != value)
+            if(!value.HasValue && rune != null)
             {
-                isRunic = value;
-                if (isRunic)
-                {
-                    //Add rune
-                }
-                else
-                {
-                    //Remove rune
-                }
+                Destroy(rune);
+                rune = null;
+            }
+            else if(rune == null && value.HasValue)
+            {
+                rune = Instantiate(runePrefab);
+                rune.transform.parent = transform;
+                rune.transform.position = transform.position;
+                rune.Target = value.Value;
             }
         }
     }
-
-    private GameObject rune;
 
     private ItemBase item = null;
     public bool HasItem { get { return item != null; } }

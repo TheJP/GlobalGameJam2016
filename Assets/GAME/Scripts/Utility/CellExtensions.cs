@@ -7,7 +7,7 @@ public static class CellExtensions
     public static bool IsSpawnable(this Cell cell)
     {
         var floor = cell as FloorTile;
-        if (floor == null || floor.HasItem) { return false; }
+        if (floor == null || floor.HasItem || floor.Rune != null) { return false; }
         return !cell.IsTaken;
     }
 }
