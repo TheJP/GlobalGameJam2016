@@ -6,6 +6,7 @@ using UnityEngine;
 class UnitSpawner : MonoBehaviour, IUnitGenerator
 {
     public Transform UnitsParent;
+    public GameObject shadowStalker;
 
     /// <summary>
     /// Returns units that are already children of UnitsParent object
@@ -13,7 +14,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     /// </summary>
     public List<Unit> SpawnUnits(List<Cell> cells)
     {
-        List<Unit> ret = new List<Unit>();
+        List<Unit> result = new List<Unit>();
         for (int i = 0; i < UnitsParent.childCount; i++)
         {
             var unit = UnitsParent.GetChild(i).GetComponent<Unit>();
@@ -26,7 +27,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
                     unit.Cell = cell;
                     unit.transform.position = cell.transform.position;
                     unit.Initialize();
-                    ret.Add(unit);
+                    result.Add(unit);
                 }//Unit gets snapped to the nearest cell
                 else
                 {
@@ -39,7 +40,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
             }
 
         }
-        return ret;
+        return result;
     }
 
     private void SpawnEnemies(List<Cell> cells, List<Unit> result)
