@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 994d8e610e2ce014bbeb8e8d1cb35514
+timeCreated: 1454163414
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: floor_rituals_0
+    21300002: floor_rituals_1
+    21300004: floor_rituals_2
+    21300006: floor_rituals_3
+    21300008: floor_rituals_4
+    21300010: floor_rituals_5
+    21300012: floor_rituals_6
+    21300014: floor_rituals_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: floor_rituals_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 5}
+        - {x: 6, y: 5}
+        - {x: 8, y: 7}
+        - {x: 10, y: 10}
+        - {x: 5, y: 16}
+        - {x: -10, y: 16}
+        - {x: -14, y: 11}
+        - {x: -14, y: -12}
+        - {x: -12, y: -15}
+        - {x: -9, y: -16}
+        - {x: 12, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: 4}
+        - {x: 7, y: 5}
+    - name: floor_rituals_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -14, y: 5}
+        - {x: -11, y: 2}
+        - {x: -4, y: 2}
+        - {x: -8, y: 2}
+        - {x: -11, y: 1}
+        - {x: -15, y: -4}
+        - {x: -15, y: -13}
+        - {x: 14, y: -13}
+        - {x: 14, y: 11}
+        - {x: 3, y: 16}
+    - name: floor_rituals_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -15, y: 7}
+        - {x: -15, y: -6}
+        - {x: -2, y: -16}
+        - {x: 5, y: -16}
+        - {x: 16, y: -6}
+        - {x: 16, y: 9}
+        - {x: 7, y: 16}
+    - name: floor_rituals_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 3}
+        - {x: -10, y: 10}
+        - {x: -14, y: 9}
+        - {x: -15, y: 7}
+        - {x: -15, y: -16}
+        - {x: 8, y: -16}
+        - {x: 11, y: -13}
+        - {x: 11, y: 10}
+        - {x: 4, y: 9}
+    - name: floor_rituals_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 15}
+        - {x: -14, y: -16}
+        - {x: 14, y: -16}
+        - {x: 15, y: -15}
+        - {x: 15, y: 14}
+        - {x: 13, y: 16}
+        - {x: 11, y: 16}
+    - name: floor_rituals_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -12, y: -10}
+        - {x: 1, y: -16}
+        - {x: 11, y: -16}
+        - {x: 11, y: -1}
+        - {x: 5, y: 16}
+    - name: floor_rituals_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: -10}
+        - {x: 0, y: -10}
+        - {x: 14, y: 2}
+        - {x: 14, y: 16}
+        - {x: 5, y: 16}
+        - {x: -6, y: -3}
+    - name: floor_rituals_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: 15}
+        - {x: 1, y: 13}
+        - {x: -3, y: 8}
+        - {x: -3, y: -4}
+        - {x: 1, y: -16}
+        - {x: 9, y: -16}
+        - {x: 10, y: -15}
+        - {x: 11, y: -13}
+        - {x: 11, y: 10}
+        - {x: 8, y: 15}
+      - - {x: -11, y: -12}
+        - {x: -8, y: -15}
+        - {x: 1, y: -15}
+        - {x: 1, y: 16}
+        - {x: -14, y: 16}
+        - {x: -14, y: -2}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

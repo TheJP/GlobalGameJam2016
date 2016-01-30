@@ -8,10 +8,34 @@ public class FloorTile : Square
     /// <summary>Determines how many regular sprites should exist in comparison to cracked ones.</summary>
     public int regularPerCrackedSprite = 7;
 
+    private bool isRunic = false;
+    public bool IsRunic
+    {
+        get { return isRunic; }
+        set
+        {
+            if (isRunic != value)
+            {
+                isRunic = value;
+                if (isRunic)
+                {
+                    //Add rune
+                }
+                else
+                {
+                    //Remove rune
+                }
+            }
+        }
+    }
+
+    private GameObject rune;
+
     private ItemBase item = null;
     public bool HasItem { get { return item != null; } }
     private bool isCracked;
     private SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
