@@ -18,7 +18,7 @@ public class WallTile : Square
     void Start()
     {
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = useDefaultSprite ? defaultSprite : wallSprites[Random.Range(0, wallSprites.Length - 1)];
+        spriteRenderer.sprite = useDefaultSprite ? defaultSprite : wallSprites[Random.Range(0, wallSprites.Length)];
         IsTaken = true;
     }
 
