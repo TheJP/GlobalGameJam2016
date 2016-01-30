@@ -105,6 +105,7 @@ public class Actor : ShadowWorldUnit
 
     public void ThrowItem()
     {
+        if (!HasItem) { return; }
         var floor = Cell.GetComponent<FloorTile>();
         if (floor != null)
         {

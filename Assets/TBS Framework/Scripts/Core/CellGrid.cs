@@ -167,11 +167,18 @@ public class CellGrid : MonoBehaviour
 
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
 
-        CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
-        while (Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)
+        var maxPlayerNumber = Units.Max(u => u.PlayerNumber);
+        CurrentPlayerNumber += 1;
+        while (CurrentPlayerNumber <= maxPlayerNumber && Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)
         {
-            CurrentPlayerNumber = (CurrentPlayerNumber + 1)%NumberOfPlayers;
+            CurrentPlayerNumber += 1;
         }//Skipping players that are defeated.
+
+        if (CurrentPlayerNumber > maxPlayerNumber)
+        {
+            CurrentPlayerNumber = Units.Min(u => u.PlayerNumber);
+            while(Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0) { CurrentPlayerNumber += 1; }
+        }
 
         if (TurnEnded != null)
             TurnEnded.Invoke(this, new EventArgs());
