@@ -141,9 +141,7 @@ public class CellGrid : MonoBehaviour
             if(GameEnded != null)
             {
                 GameEnded.Invoke(this, new EventArgs());
-                FindObjectOfType<GameManager>().GameEnded();
             }
-                
         }
     }
     

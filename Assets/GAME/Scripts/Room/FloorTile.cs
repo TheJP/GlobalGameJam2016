@@ -35,7 +35,6 @@ public class FloorTile : Square
     private bool isCracked;
     private SpriteRenderer spriteRenderer;
 
-
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
