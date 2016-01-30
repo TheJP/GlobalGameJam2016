@@ -5,6 +5,7 @@ public class Actor : ShadowWorldUnit
 {
     private ItemBase item = null;
     public bool HasItem { get { return item != null; } }
+    private bool destroyed = false;
 
     public override void Initialize()
     {
@@ -17,6 +18,12 @@ public class Actor : ShadowWorldUnit
         ActionPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_ActionPoints");
         DefenceFactor = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_DefenceFactor");
         UnitMoved += ActorUnitMoved;
+        UnitDestroyed += ActorUnitDestroyed;
+    }
+
+    private void ActorUnitDestroyed(object sender, AttackEventArgs e)
+    {
+        if (HasItem) { ThrowItem(); }
     }
 
     private void ActorUnitMoved(object sender, MovementEventArgs e)
@@ -24,7 +31,18 @@ public class Actor : ShadowWorldUnit
         var floor = Cell.GetComponent<FloorTile>();
         if (floor != null)
         {
-            if (floor.HasItem && !HasItem) { this.item = floor.RemoveItem(); }
+            //Item pickup
+            if (floor.HasItem && !HasItem)
+            {
+                this.item = floor.RemoveItem();
+                FindObjectOfType<GameManager>().AcquiredTarget(this.item.Target);
+            }
+            //Win condition
+            if(floor.Rune.HasValue && FindObjectOfType<GameManager>().HasAcquiredTarget(floor.Rune.Value))
+            {
+                FindObjectOfType<GameManager>().playerEscaped++;
+                RemoveLater(); return;
+            }
         }
         //Move camera along with the player
         if (Camera.current != null)
@@ -49,6 +67,7 @@ public class Actor : ShadowWorldUnit
     }
     public override void MarkAsDestroyed()
     {
+        destroyed = true;
     }
 
     private IEnumerator Jerk(Unit other)
@@ -96,10 +115,11 @@ public class Actor : ShadowWorldUnit
 
     private void SetColor(Color color)
     {
-        var _renderer = GetComponent<SpriteRenderer>();
-        if (_renderer != null)
+        if (destroyed) { return; }
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
         {
-            _renderer.color = color;
+            spriteRenderer.color = color;
         }
     }
 
@@ -110,6 +130,7 @@ public class Actor : ShadowWorldUnit
         if (floor != null)
         {
             floor.AddItem(this.item);
+            FindObjectOfType<GameManager>().LostTarget(this.item.Target);
             this.item = null;
         }
     }

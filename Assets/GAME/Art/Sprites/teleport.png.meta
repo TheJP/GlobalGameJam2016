@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: a1be0bf2e60c4334fa133dfa111d512e
-timeCreated: 1454184867
-licenseType: Free
+guid: 463ff18c3abf2eb4aa74ba362a397b12
+timeCreated: 1454181531
+licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: teleport_0
+    21300002: teleport_1
+    21300004: teleport_2
+    21300006: teleport_3
+    21300008: teleport_4
+    21300010: teleport_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -26,30 +32,150 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: teleport_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: -5}
+        - {x: 2, y: -5}
+        - {x: 5, y: -4}
+        - {x: 5, y: 3}
+        - {x: 3, y: 6}
+        - {x: 0, y: 6}
+        - {x: -4, y: 3}
+        - {x: -4, y: -1}
+    - name: teleport_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 10}
+        - {x: -8, y: 8}
+        - {x: -8, y: -3}
+        - {x: -5, y: -9}
+        - {x: 3, y: -9}
+        - {x: 9, y: -1}
+        - {x: 9, y: 3}
+        - {x: 3, y: 10}
+    - name: teleport_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 15}
+        - {x: -4, y: 13}
+        - {x: -8, y: 0}
+        - {x: -8, y: -1}
+        - {x: -4, y: -14}
+        - {x: -1, y: -16}
+        - {x: 1, y: -16}
+        - {x: 5, y: -14}
+        - {x: 9, y: 1}
+        - {x: 8, y: 10}
+        - {x: 2, y: 15}
+    - name: teleport_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -6, y: 10}
+        - {x: -10, y: 4}
+        - {x: -10, y: -2}
+        - {x: -2, y: -14}
+        - {x: 2, y: -14}
+        - {x: 7, y: -9}
+        - {x: 11, y: -3}
+        - {x: 11, y: 3}
+        - {x: 3, y: 15}
+    - name: teleport_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 9}
+        - {x: -13, y: 2}
+        - {x: -13, y: 0}
+        - {x: -12, y: -2}
+        - {x: 0, y: -8}
+        - {x: 3, y: -7}
+        - {x: 14, y: -2}
+        - {x: 14, y: 3}
+        - {x: 7, y: 9}
+    - name: teleport_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 5}
+        - {x: -8, y: 4}
+        - {x: -9, y: 1}
+        - {x: -9, y: -4}
+        - {x: 9, y: -4}
+        - {x: 9, y: 0}
+        - {x: 8, y: 3}
+        - {x: 4, y: 5}
     outline: []
   spritePackingTag: 
   userData: 
