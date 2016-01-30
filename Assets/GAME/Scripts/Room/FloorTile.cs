@@ -8,6 +8,8 @@ public class FloorTile : Square
     /// <summary>Determines how many regular sprites should exist in comparison to cracked ones.</summary>
     public int regularPerCrackedSprite = 7;
 
+    private ItemBase item = null;
+    public bool HasItem { get { return item != null; } }
     private bool isCracked;
     private SpriteRenderer spriteRenderer;
 
@@ -17,26 +19,25 @@ public class FloorTile : Square
         isCracked = Random.Range(0, 7) == 0;
         if (isCracked) { spriteRenderer.sprite = crackedSprites[Random.Range(0, crackedSprites.Length - 1)]; }
         else { spriteRenderer.sprite = regularSprites[Random.Range(0, regularSprites.Length - 1)]; }
-        if (hasItem) { AddItem(); }
     }
 
-    private void AddItem()
+    public void AddItem(ItemBase item)
     {
-        Debug.Log("Add Item");
+        this.item = item;
+        item.Show();
+        item.transform.position = transform.position;
     }
-    private void RemoveItem()
+    public ItemBase RemoveItem()
     {
-        Debug.Log("Remove Item");
+        var item = this.item;
+        item.Hide();
+        this.item = null;
+        return item;
     }
 
     public override Vector3 GetCellDimensions()
     {
         return 0.98f * GetComponent<SpriteRenderer>().bounds.size;
-    }
-
-    public void OnLeftItem() {
-        if (hasItem) { AddItem(); }
-        else { RemoveItem(); }
     }
 
     public override void MarkAsHighlighted()

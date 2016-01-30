@@ -4,11 +4,19 @@ using UnityEngine;
 
 class UnitSpawner : MonoBehaviour, IUnitGenerator
 {
+    public RoomGenerator roomGenerator;
     public Transform unitsParent;
+    public GameObject playerPrefab;
     public GameObject shadowStalker;
 
+    public int numberOfPlayers = 2;
     public int minimumShadowStalker = 1;
     public int maximumShadowStalker = 5;
+
+    void Start()
+    {
+        roomGenerator = GetComponent<RoomGenerator>();
+    }
 
     /// <summary>
     /// Returns units that are already children of UnitsParent object
@@ -17,30 +25,7 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
     public List<Unit> SpawnUnits(List<Cell> cells)
     {
         List<Unit> result = new List<Unit>();
-        for (int i = 0; i < unitsParent.childCount; i++)
-        {
-            var unit = unitsParent.GetChild(i).GetComponent<Unit>();
-            if (unit != null)
-            {
-                var cell = cells.OrderBy(h => System.Math.Abs((h.transform.position - unit.transform.position).magnitude)).First();
-                if (!cell.IsTaken)
-                {
-                    cell.IsTaken = true;
-                    unit.Cell = cell;
-                    unit.transform.position = cell.transform.position;
-                    unit.Initialize();
-                    result.Add(unit);
-                }//Unit gets snapped to the nearest cell
-                else
-                {
-                    Destroy(unit.gameObject);
-                }//If the nearest cell is taken, the unit gets destroyed.
-            }
-            else
-            {
-                Debug.LogError("Invalid object in Units Parent game object");
-            }
-        }
+        SpawnPlayers(cells, result);
         SpawnEnemies(cells, result);
         return result;
     }
@@ -67,11 +52,34 @@ class UnitSpawner : MonoBehaviour, IUnitGenerator
             //Choose cell where the shadow stalker should be spawned
             Cell cell;
             do { cell = cells.GetRandomElement(); }
-            while (cell.IsTaken);
-            var enemyObject = (GameObject)Instantiate(prefab, cell.transform.position - (0.1f * Vector3.forward), Quaternion.identity);
-            enemyObject.transform.parent = unitsParent.transform;
+            while (!cell.IsSpawnable());
+            var enemyObject = (GameObject)Instantiate(prefab, cell.transform.position, Quaternion.identity);
+            enemyObject.transform.parent = unitsParent;
             //Initialize unit
+            cell.IsTaken = true;
             var unit = enemyObject.GetComponent<Unit>();
+            unit.Cell = cell;
+            unit.Initialize();
+            result.Add(unit);
+        }
+    }
+
+    /// <summary>Spawns one unit per player.</summary>
+    private void SpawnPlayers(List<Cell> cells, List<Unit> result)
+    {
+        //Spawn players in the middle of the bottom layer
+        var position = roomGenerator.width / 2 - numberOfPlayers / 2 + 1;
+        for (int i = 0; i < numberOfPlayers; ++i)
+        {
+            Cell cell;
+            do { cell = cells[position--]; }
+            while (!cell.IsSpawnable());
+            var player = (GameObject)Instantiate(playerPrefab, cell.transform.position, Quaternion.identity);
+            player.transform.parent = unitsParent;
+            //Initialize unit
+            cell.IsTaken = true;
+            var unit = player.GetComponent<Unit>();
+            unit.PlayerNumber = i;
             unit.Cell = cell;
             unit.Initialize();
             result.Add(unit);

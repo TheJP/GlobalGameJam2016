@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAdapter : Unit
+public class EnemyAdapter : ShadowWorldUnit
 {
     public override void MarkAsAttacking(Unit other) { }
 

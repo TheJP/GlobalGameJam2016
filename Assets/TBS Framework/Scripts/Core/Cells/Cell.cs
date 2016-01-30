@@ -13,10 +13,6 @@ public abstract class Cell : MonoBehaviour, IGraphNode
     /// Indicates if something is occupying the cell.
     /// </summary>
     public bool IsTaken;
-
-    public bool hasItem;
-    public bool whiteZone;
-    public bool redZone;
     /// <summary>
     /// Cost of moving through the cell.
     /// </summary>
