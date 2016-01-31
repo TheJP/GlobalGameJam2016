@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour {
 
     /// <summary>Stops all playing sound effects.</summary>
     public void StopSound() { GetComponent<AudioSource>().Stop(); }
+    public void StopDelayed(float delay) { Invoke("StopSound", delay); }
 
     private void TurnEnded(object sender, EventArgs e)
     {
