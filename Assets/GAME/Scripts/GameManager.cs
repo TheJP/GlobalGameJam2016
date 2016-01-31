@@ -48,10 +48,19 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        var currentPlayer = gridManager.CurrentPlayer;
         if (Input.GetButtonDown("NextTurn"))
-            if (gridManager.CurrentPlayer is HumanPlayer) { gridManager.EndTurn(); }
+        {
+            if (currentPlayer is PlayerActors) { gridManager.EndTurn(); }
+            else if (currentPlayer is ShadowLordActor)
+            {
+                if(!(currentPlayer as ShadowLordActor).NextMonster()) { gridManager.EndTurn(); }
+            }
+        }
         if (Input.GetButtonDown("ThrowItem"))
-            actualPlayer.ThrowItem();
+        {
+            if (gridManager.CurrentPlayer is HumanPlayer) { actualPlayer.ThrowItem(); }
+        }
         //Add player movement with keyboard inputs
         if(actualPlayer != null)
         {
