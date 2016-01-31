@@ -7,6 +7,9 @@ public class InGameSetUp : MonoBehaviour
 
 	public Text playerNumberText;
 	public Text shadowLordText;
+    public Button creditsButton;
+
+    public GameObject credits;
 
 	int playerNumber = 1;
 	int shadowLord = 0;
@@ -68,5 +71,14 @@ public class InGameSetUp : MonoBehaviour
     {
         PlayerPrefs.SetInt("Players_Number", playerNumber);
         playerNumberText.text = "No of Players: " + playerNumber;
+    }
+
+    public void ShowCredits() {
+        credits.SetActive(true);
+    }
+
+    public void HideCredits()
+    {
+        credits.SetActive(false);
     }
 }
