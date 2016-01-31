@@ -15,9 +15,24 @@ public class InGameSetUp : MonoBehaviour
 	{
         playerNumber = PlayerPrefs.GetInt("Players_Number", playerNumber);
         shadowLord = PlayerPrefs.GetInt("Enemy_Controlled", shadowLord);
+        PlayerPrefs.SetInt("Worlds_Escaped", 0);
+        PlayerPrefs.SetInt("Enemies_Killed", 0);
+        PlayerPrefs.SetInt("Killed_Players", 0);
+        PlayerPrefs.SetInt("Damage_Dealt", 0);
+        PlayerPrefs.SetInt("Damage_Taken", 0);
         UpdatePlayerNumber();
         UpdateShadowLord();
 	}
+
+    void OnLevelWasLoaded(int scene) {
+        if (scene == 0) {
+            PlayerPrefs.SetInt("Worlds_Escaped", 0);
+            PlayerPrefs.SetInt("Enemies_Killed", 0);
+            PlayerPrefs.SetInt("Killed_Players", 0);
+            PlayerPrefs.SetInt("Damage_Dealt", 0);
+            PlayerPrefs.SetInt("Damage_Taken", 0);
+        }
+    }
 
 	public void SetCharacterParameters ()
 	{

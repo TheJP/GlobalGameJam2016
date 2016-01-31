@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+    public Text[] gameStats;
     public GameObject teleportEffect;
     public GameObject gameOverPanel;
     public CellGrid gridManager;
@@ -168,6 +170,11 @@ public class GameManager : MonoBehaviour {
 
     void GameOver() {
         gameOverPanel.SetActive(true);
+        gameStats[0].text = PlayerPrefs.GetInt("Worlds_Escaped").ToString();
+        gameStats[1].text = PlayerPrefs.GetInt("Enemies_Killed").ToString();
+        gameStats[2].text = PlayerPrefs.GetInt("Killed_Players").ToString();
+        gameStats[3].text = PlayerPrefs.GetInt("Damage_Dealt").ToString();
+        gameStats[4].text = PlayerPrefs.GetInt("Damage_Taken").ToString();
     }
 
     public void ReturnToMainMenu() {
@@ -175,6 +182,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void StageClear() {
+        PlayerPrefs.SetInt("Worlds_Escaped", PlayerPrefs.GetInt("Worlds_Escaped") + 1);
         FindObjectOfType<StartOptions>().StartButtonClicked();
     }
 
