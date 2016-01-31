@@ -27,6 +27,8 @@ public class Actor : ShadowWorldUnit
     private void ActorUnitDestroyed(object sender, AttackEventArgs e)
     {
         if (HasItem) { ThrowItem(); }
+        if (HitPoints > 0)
+            FindObjectOfType<GameManager>().SpawnTeleport(Cell.transform.position);
     }
 
     private void ActorUnitMoved(object sender, MovementEventArgs e)
