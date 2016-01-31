@@ -43,8 +43,28 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        FindObjectOfType<CellGrid>().GameEnded += GameEnded;
+        gridManager.GameEnded += GameEnded;
+        gridManager.TurnEnded += TurnEnded;
 	}
+
+    private void TurnEnded(object sender, EventArgs e)
+    {
+        var add = gridManager.CurrentPlayer is NaiveAiPlayer;
+        foreach (var unit in gridManager.Units.Where(u => u.PlayerNumber == 6))
+        {
+            if (add) { unit.UnitMoved += AiUnitMoved; }
+            else { unit.UnitMoved -= AiUnitMoved; }
+        }
+    }
+
+    private void AiUnitMoved(object sender, MovementEventArgs e)
+    {
+        var camera = FindObjectOfType<CameraController>();
+        if (sender is ShadowWorldUnit)
+        {
+            camera.target = (sender as ShadowWorldUnit).transform;
+        }
+    }
 
     // Update is called once per frame
     void Update () {

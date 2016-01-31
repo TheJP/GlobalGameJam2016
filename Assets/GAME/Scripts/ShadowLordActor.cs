@@ -31,6 +31,8 @@ class ShadowLordActor : HumanPlayer
     /// <returns>true = monster found and switched to it, false otherwise</returns>
     public bool NextMonster()
     {
+        var nonPlayables = units.Where(u => u.HitPoints <= 0 || u.MovementPoints <= 0).ToList();
+        foreach (var nonPlayable in nonPlayables) { units.Remove(nonPlayable); }
         if (!units.Any()) { return false; }
         var unit = units[0];
         units.RemoveAt(0);
