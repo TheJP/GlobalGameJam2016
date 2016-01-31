@@ -30,7 +30,11 @@ public class Actor : ShadowWorldUnit
         if (HitPoints > 0)
             FindObjectOfType<GameManager>().SpawnTeleport(Cell.transform.position);
         else
+        {
             Instantiate(tombStone, transform.position, Quaternion.identity);
+            PlayerPrefs.SetInt("Killed_Players", PlayerPrefs.GetInt("Killed_Players")+1);
+        }
+            
     }
 
     private void ActorUnitMoved(object sender, MovementEventArgs e)
@@ -69,10 +73,17 @@ public class Actor : ShadowWorldUnit
     public override void MarkAsAttacking(Unit other)
     {
         StartCoroutine(Jerk(other));
+        int totalDamage = AttackFactor - other.DefenceFactor;
+        if (totalDamage < 0)
+            totalDamage = 1;
+        PlayerPrefs.SetInt("Damage_Dealt", PlayerPrefs.GetInt("Damage_Dealt") + totalDamage);
     }
     public override void MarkAsDefending(Unit other)
     {
-
+        int totalDamage = other.AttackFactor - DefenceFactor;
+        if (totalDamage < 0)
+            totalDamage = 1;
+        PlayerPrefs.SetInt("Damage_Taken", PlayerPrefs.GetInt("Damage_Taken") + totalDamage);
     }
     public override void MarkAsDestroyed()
     {

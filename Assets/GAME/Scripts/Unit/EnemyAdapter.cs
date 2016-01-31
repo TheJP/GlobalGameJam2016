@@ -9,7 +9,9 @@ public class EnemyAdapter : ShadowWorldUnit
 
     public override void MarkAsDefending(Unit other) { }
 
-    public override void MarkAsDestroyed() { }
+    public override void MarkAsDestroyed() {
+        PlayerPrefs.SetInt("Enemies_Killed", PlayerPrefs.GetInt("Enemies_Killed") + 1);
+    }
 
     public override void MarkAsFinished() { }
 
