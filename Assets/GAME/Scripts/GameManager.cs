@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
     public GameObject teleportEffect;
+    public GameObject gameOverPanel;
     public CellGrid gridManager;
     public ShadowWorldUnit actualPlayer;
     public int playerEscaped = 0;
@@ -166,11 +167,10 @@ public class GameManager : MonoBehaviour {
     }
 
     void GameOver() {
-        StartCoroutine(ReturnToMainMenu());
+        gameOverPanel.SetActive(true);
     }
 
-    IEnumerator ReturnToMainMenu() {
-        yield return new WaitForSeconds(3f);
+    public void ReturnToMainMenu() {
         FindObjectOfType<StartOptions>().ReturnToMainMenu();
     }
 
