@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour {
             {
                 var cell = gridManager.Cells.OrderBy(h => Math.Abs((h.transform.position - position.Value).magnitude)).First();
                 if (!cell.IsTaken) { actualPlayer.Move(cell, new List<Cell>() { cell }); }
+                else
+                {
+                    //Attack units if it's occupied
+                    var attackedUnit = gridManager.Units.Where(u => u.Cell == cell).FirstOrDefault();
+                    if(attackedUnit != null) { actualPlayer.DealDamage(attackedUnit); }
+                }
             }
         }
 	}

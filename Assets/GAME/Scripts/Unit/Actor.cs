@@ -17,6 +17,7 @@ public class Actor : ShadowWorldUnit
         MovementPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_MovementPoints");
         ActionPoints = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_ActionPoints");
         DefenceFactor = PlayerPrefs.GetInt("Player_" + PlayerNumber + "_DefenceFactor");
+        AttackRange = 1;
         UnitMoved += ActorUnitMoved;
         UnitDestroyed += ActorUnitDestroyed;
     }
