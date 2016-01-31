@@ -6,6 +6,8 @@ public class Actor : ShadowWorldUnit
     private ItemBase item = null;
     public bool HasItem { get { return item != null; } }
 
+    public GameObject tombStone;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -49,6 +51,7 @@ public class Actor : ShadowWorldUnit
     }
     public override void MarkAsDestroyed()
     {
+        Instantiate(tombStone, transform.position, Quaternion.identity);
     }
 
     private IEnumerator Jerk(Unit other)
