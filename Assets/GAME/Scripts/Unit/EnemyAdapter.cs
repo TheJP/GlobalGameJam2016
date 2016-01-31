@@ -3,15 +3,29 @@ using System.Collections;
 
 public class EnemyAdapter : ShadowWorldUnit
 {
+    public EnemyAdapter()
+    {
+        UnitDestroyed += EnemyUnitDestroyed;
+        UnitAttacked += EnemyUnitAttacked;
+    }
+
+    private void EnemyUnitDestroyed(object sender, AttackEventArgs e)
+    {
+        PlayerPrefs.SetInt("Enemies_Killed", PlayerPrefs.GetInt("Enemies_Killed") + 1);
+    }
+
+    private void EnemyUnitAttacked(object sender, AttackEventArgs e)
+    {
+        PlayerPrefs.SetInt("Damage_Dealt", PlayerPrefs.GetInt("Damage_Dealt") + e.Damage);
+    }
+
     public override void MarkAsAttacking(Unit other) {
         StartCoroutine(Jerk(other));
     }
 
     public override void MarkAsDefending(Unit other) { }
 
-    public override void MarkAsDestroyed() {
-        PlayerPrefs.SetInt("Enemies_Killed", PlayerPrefs.GetInt("Enemies_Killed") + 1);
-    }
+    public override void MarkAsDestroyed() { }
 
     public override void MarkAsFinished() { }
 

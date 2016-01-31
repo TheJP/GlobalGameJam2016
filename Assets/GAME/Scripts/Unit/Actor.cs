@@ -22,17 +22,25 @@ public class Actor : ShadowWorldUnit
         AttackRange = 1;
         UnitMoved += ActorUnitMoved;
         UnitDestroyed += ActorUnitDestroyed;
+        UnitAttacked += ActorUnitAttacked;
+    }
+
+    private void ActorUnitAttacked(object sender, AttackEventArgs e)
+    {
+        PlayerPrefs.SetInt("Damage_Taken", PlayerPrefs.GetInt("Damage_Taken") + e.Damage);
     }
 
     private void ActorUnitDestroyed(object sender, AttackEventArgs e)
     {
         if (HasItem) { ThrowItem(); }
         if (HitPoints > 0)
+        {
             FindObjectOfType<GameManager>().SpawnTeleport(Cell.transform.position);
+        }
         else
         {
             Instantiate(tombStone, transform.position, Quaternion.identity);
-            PlayerPrefs.SetInt("Killed_Players", PlayerPrefs.GetInt("Killed_Players")+1);
+            PlayerPrefs.SetInt("Killed_Players", PlayerPrefs.GetInt("Killed_Players") + 1);
         }
             
     }
@@ -63,8 +71,6 @@ public class Actor : ShadowWorldUnit
         }
     }
 
-    //private void 
-
     public override void OnUnitDeselected()
     {
         base.OnUnitDeselected();
@@ -73,21 +79,11 @@ public class Actor : ShadowWorldUnit
     public override void MarkAsAttacking(Unit other)
     {
         StartCoroutine(Jerk(other));
-        int totalDamage = AttackFactor - other.DefenceFactor;
-        if (totalDamage < 0)
-            totalDamage = 1;
-        PlayerPrefs.SetInt("Damage_Dealt", PlayerPrefs.GetInt("Damage_Dealt") + totalDamage);
     }
-    public override void MarkAsDefending(Unit other)
-    {
-        int totalDamage = other.AttackFactor - DefenceFactor;
-        if (totalDamage < 0)
-            totalDamage = 1;
-        PlayerPrefs.SetInt("Damage_Taken", PlayerPrefs.GetInt("Damage_Taken") + totalDamage);
-    }
+    public override void MarkAsDefending(Unit other) { }
+
     public override void MarkAsDestroyed()
     {
-        
         destroyed = true;
     }
 
