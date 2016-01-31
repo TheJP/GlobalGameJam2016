@@ -15,6 +15,32 @@ public class GameManager : MonoBehaviour {
 
     private HashSet<Targets> acquiredTargets = new HashSet<Targets>();
 
+    void Awake()
+    {
+        //Remove unneeded HumanPlayers
+        var playersNumber = PlayerPrefs.GetInt("Players_Number", 1);
+        var players = gridManager.PlayersParent;
+        for (int i = playersNumber; i < players.childCount - 1; ++i)
+        {
+            Destroy(players.GetChild(i).gameObject);
+        }
+        //Create shadow lord player
+        var enemy = players.GetChild(players.childCount - 1);
+        if (PlayerPrefs.GetInt("Enemy_Controlled") == 1)
+        {
+            enemy.gameObject.AddComponent<ShadowLordActor>();
+            var player = enemy.GetComponent<ShadowLordActor>();
+            player.PlayerNumber = 6;
+            player.cameraController = FindObjectOfType<CameraController>();
+            player.manager = this;
+        }
+        else {
+            enemy.gameObject.AddComponent<NaiveAiPlayer>();
+            var player = enemy.GetComponent<Player>();
+            player.PlayerNumber = 6;
+        }
+    }
+
     // Use this for initialization
     void Start () {
         FindObjectOfType<CellGrid>().GameEnded += GameEnded;

@@ -13,8 +13,10 @@ public class InGameSetUp : MonoBehaviour
 
 	void Start ()
 	{
-		PlayerPrefs.SetInt ("ShadowLord_Active", shadowLord);
-		PlayerPrefs.SetInt ("Players_Number", playerNumber);
+        playerNumber = PlayerPrefs.GetInt("Players_Number", playerNumber);
+        shadowLord = PlayerPrefs.GetInt("Enemy_Controlled", shadowLord);
+        UpdatePlayerNumber();
+        UpdateShadowLord();
 	}
 
 	public void SetCharacterParameters ()
@@ -29,20 +31,27 @@ public class InGameSetUp : MonoBehaviour
 		PlayerPrefs.SetInt ("ShadowLord_Active", shadowLord);
 	}
 
-	public void SetShadowLord ()
+	public void ToggleShadowLord ()
 	{
-		shadowLord = shadowLord == 0 ? 1 : 0;
-		shadowLordText.text = shadowLord == 1 ? "Shadow Lord: " + "Yes" : "Shadow Lord: " + "No";
-		PlayerPrefs.SetInt ("Enemy_Controlled", shadowLord);
+		shadowLord = 1 - shadowLord;
+        UpdateShadowLord();
 	}
 
-	public void SetPlayerNumber ()
+    public void UpdateShadowLord()
+    {
+        shadowLordText.text = shadowLord == 1 ? "Shadow Lord: " + "Yes" : "Shadow Lord: " + "No";
+        PlayerPrefs.SetInt("Enemy_Controlled", shadowLord);
+    }
+
+	public void TogglePlayerNumber ()
 	{
-		if (playerNumber < 6)
-			playerNumber++;
-		else
-			playerNumber = 1;
-		PlayerPrefs.SetInt ("Players_Number", playerNumber);
-		playerNumberText.text = "No of Players: " + playerNumber;
+        playerNumber = (playerNumber % 6) + 1;
+        UpdatePlayerNumber();
 	}
+
+    public void UpdatePlayerNumber()
+    {
+        PlayerPrefs.SetInt("Players_Number", playerNumber);
+        playerNumberText.text = "No of Players: " + playerNumber;
+    }
 }
