@@ -122,7 +122,11 @@ public class GameManager : MonoBehaviour {
             foreach(var player in gridManager.Units.Where(u => u is Actor).Select(u => u as Actor))
             {
                 var floor = player.Cell.GetComponent<FloorTile>();
-                if(floor != null && floor.Rune != null && floor.Rune.Value == target) { player.RemoveLater(); }
+                if (floor != null && floor.Rune != null && floor.Rune.Value == target)
+                {
+                    FindObjectOfType<GameManager>().playerEscaped++;
+                    player.RemoveLater();
+                }
             }
             acquiredTargets.Add(target);
             UpdateTargets();
