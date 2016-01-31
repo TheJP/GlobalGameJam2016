@@ -35,7 +35,9 @@ public class Actor : ShadowWorldUnit
         if (HasItem) { ThrowItem(); }
         if (HitPoints > 0)
         {
-            FindObjectOfType<GameManager>().SpawnTeleport(Cell.transform.position);
+            var gameManager = FindObjectOfType<GameManager>();
+            gameManager.SpawnTeleport(Cell.transform.position);
+            gameManager.PlaySound(gameManager.teleportSoundEffect);
         }
         else
         {
@@ -78,6 +80,7 @@ public class Actor : ShadowWorldUnit
 
     public override void MarkAsAttacking(Unit other)
     {
+        base.MarkAsAttacking(other);
         StartCoroutine(Jerk(other));
     }
     public override void MarkAsDefending(Unit other) { }

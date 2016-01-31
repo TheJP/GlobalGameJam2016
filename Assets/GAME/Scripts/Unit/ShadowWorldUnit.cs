@@ -21,4 +21,10 @@ public abstract class ShadowWorldUnit : Unit
         base.OnTurnEnd();
         GetComponentInChildren<Light>().enabled = false;
     }
+
+    public override void MarkAsAttacking(Unit other)
+    {
+        var gameManager = FindObjectOfType<GameManager>();
+        gameManager.PlaySound(gameManager.attackSoundEffect);
+    }
 }
