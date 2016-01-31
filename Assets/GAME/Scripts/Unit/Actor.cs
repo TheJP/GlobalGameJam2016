@@ -29,6 +29,8 @@ public class Actor : ShadowWorldUnit
         if (HasItem) { ThrowItem(); }
         if (HitPoints > 0)
             FindObjectOfType<GameManager>().SpawnTeleport(Cell.transform.position);
+        else
+            Instantiate(tombStone, transform.position, Quaternion.identity);
     }
 
     private void ActorUnitMoved(object sender, MovementEventArgs e)
@@ -74,7 +76,7 @@ public class Actor : ShadowWorldUnit
     }
     public override void MarkAsDestroyed()
     {
-        Instantiate(tombStone, transform.position, Quaternion.identity);
+        
         destroyed = true;
     }
 
