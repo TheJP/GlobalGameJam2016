@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
     public int playerEscaped = 0;
     public GameObject flameItemIndicatorPrefab;
     public GameObject flameItemIndicatorPanel;
+    public AudioClip attackSoundEffect;
+    public AudioClip stepSoundEffect;
+    public AudioClip teleportSoundEffect;
 
     private HashSet<Targets> acquiredTargets = new HashSet<Targets>();
 
@@ -49,6 +52,23 @@ public class GameManager : MonoBehaviour {
         gridManager.GameEnded += GameEnded;
         gridManager.TurnEnded += TurnEnded;
 	}
+
+    /// <summary>Plays the given sound and loops it, if the flag is set.</summary>
+    /// <param name="sound"></param>
+    /// <param name="loop"></param>
+    public void PlaySound(AudioClip sound, bool loop = false)
+    {
+        if (!loop) { GetComponent<AudioSource>().PlayOneShot(sound); }
+        else {
+            var source = GetComponent<AudioSource>();
+            source.loop = true;
+            source.clip = sound;
+            source.Play();
+        }
+    }
+
+    /// <summary>Stops all playing sound effects.</summary>
+    public void StopSound() { GetComponent<AudioSource>().Stop(); }
 
     private void TurnEnded(object sender, EventArgs e)
     {
