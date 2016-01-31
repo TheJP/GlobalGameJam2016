@@ -9,4 +9,16 @@ public abstract class ShadowWorldUnit : Unit
         position.z = -0.1f;
         transform.position = position;
     }
+
+    public override void OnTurnStart()
+    {
+        base.OnTurnStart();
+        GetComponentInChildren<Light>().enabled = true;
+    }
+
+    public override void OnTurnEnd()
+    {
+        base.OnTurnEnd();
+        GetComponentInChildren<Light>().enabled = false;
+    }
 }

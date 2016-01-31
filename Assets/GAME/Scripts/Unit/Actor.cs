@@ -133,6 +133,7 @@ public class Actor : ShadowWorldUnit
         }
     }
 
+    /// <summary>The player throws his current item if that is possible.</summary>
     public void ThrowItem()
     {
         if (!HasItem) { return; }
