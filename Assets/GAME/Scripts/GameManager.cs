@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (Input.GetButtonDown("NextTurn"))
-            gridManager.EndTurn();
+            if (gridManager.CurrentPlayer is HumanPlayer) { gridManager.EndTurn(); }
         if (Input.GetButtonDown("ThrowItem"))
             actualPlayer.ThrowItem();
         //Add player movement with keyboard inputs

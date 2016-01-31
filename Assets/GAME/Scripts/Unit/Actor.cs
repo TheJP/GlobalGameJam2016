@@ -52,6 +52,8 @@ public class Actor : ShadowWorldUnit
         }
     }
 
+    //private void 
+
     public override void OnUnitDeselected()
     {
         base.OnUnitDeselected();
@@ -127,7 +129,7 @@ public class Actor : ShadowWorldUnit
     {
         if (!HasItem) { return; }
         var floor = Cell.GetComponent<FloorTile>();
-        if (floor != null)
+        if (floor != null && !floor.HasItem)
         {
             floor.AddItem(this.item);
             FindObjectOfType<GameManager>().LostTarget(this.item.Target);
