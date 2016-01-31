@@ -56,46 +56,6 @@ public class CellGrid : MonoBehaviour
         }
         NumberOfPlayers = Players.Count;
         CurrentPlayerNumber = Players.Min(p => p.PlayerNumber);
-        //Restored library functionality
-        //Players = new List<Player>();
-        //for (int i = 0; i < PlayersParent.childCount; i++)
-        //{
-        //    if (i < PlayerPrefs.GetInt("Players_Number", 1))
-        //    {
-        //        var player = PlayersParent.GetChild(i).GetComponent<Player>();
-        //        if (player != null)
-        //            Players.Add(player);
-        //        else
-        //            Debug.LogError("Invalid object in Players Parent game object");
-        //    }
-        //    else
-        //        continue;
-        //}
-        //var enemy = PlayersParent.GetChild(PlayersParent.childCount - 1);
-        //if (PlayerPrefs.GetInt("Enemy_Controlled") == 1)
-        //{
-        //    enemy.gameObject.AddComponent<PlayerActors>();
-        //    var player = enemy.GetComponent<Player>();
-        //    var playerProperties = player.GetComponent<PlayerActors>();
-        //    player.PlayerNumber = 6;
-        //    playerProperties.cameraController = FindObjectOfType<CameraController>();
-        //    playerProperties.manager = FindObjectOfType<GameManager>();
-        //    if (player != null)
-        //        Players.Add(player);
-        //    else
-        //        Debug.LogError("Invalid object in Players Parent game object");
-        //}
-        //else {
-        //    enemy.gameObject.AddComponent<NaiveAiPlayer>();
-        //    var player = enemy.GetComponent<Player>();
-        //    player.PlayerNumber = 6;
-        //    if (player != null)
-        //        Players.Add(player);
-        //    else
-        //        Debug.LogError("Invalid object in Players Parent game object");
-        //}
-        //NumberOfPlayers = Players.Count;
-        //CurrentPlayerNumber = Players.Min(p => p.PlayerNumber);
 
         var gridGenerator = GetComponent<ICellGridGenerator>();
         if (gridGenerator != null)
