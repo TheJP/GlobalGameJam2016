@@ -7,6 +7,8 @@ public class Actor : ShadowWorldUnit
     public bool HasItem { get { return item != null; } }
     private bool destroyed = false;
 
+    public GameObject tombStone;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -25,6 +27,8 @@ public class Actor : ShadowWorldUnit
     private void ActorUnitDestroyed(object sender, AttackEventArgs e)
     {
         if (HasItem) { ThrowItem(); }
+        if (HitPoints > 0)
+            FindObjectOfType<GameManager>().SpawnTeleport(Cell.transform.position);
     }
 
     private void ActorUnitMoved(object sender, MovementEventArgs e)
@@ -70,6 +74,7 @@ public class Actor : ShadowWorldUnit
     }
     public override void MarkAsDestroyed()
     {
+        Instantiate(tombStone, transform.position, Quaternion.identity);
         destroyed = true;
     }
 

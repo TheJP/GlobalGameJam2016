@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject teleportEffect;
     public CellGrid gridManager;
-    public Actor actualPlayer;
+    public ShadowWorldUnit actualPlayer;
     public int playerEscaped = 0;
     public GameObject flameItemIndicatorPrefab;
     public GameObject flameItemIndicatorPanel;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
         }
         if (Input.GetButtonDown("ThrowItem"))
         {
-            if (gridManager.CurrentPlayer is HumanPlayer) { actualPlayer.ThrowItem(); }
+            if (actualPlayer is Actor) { (actualPlayer as Actor).ThrowItem(); }
         }
         //Add player movement with keyboard inputs
         if(actualPlayer != null)

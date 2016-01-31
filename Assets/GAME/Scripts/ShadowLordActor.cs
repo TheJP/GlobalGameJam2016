@@ -10,6 +10,7 @@ class ShadowLordActor : HumanPlayer
     public GameManager manager;
     public CameraController cameraController;
     private CellGrid cellGrid;
+    private List<Unit> units = new List<Unit>();
 
     public override void Play(CellGrid cellGrid)
     {
@@ -20,12 +21,8 @@ class ShadowLordActor : HumanPlayer
     void SelectFirstEnemy(CellGrid cellGrid)
     {
         this.cellGrid = cellGrid;
-        var unit = cellGrid.Units.FindAll(u => u.PlayerNumber.Equals(PlayerNumber)).FirstOrDefault();
-        if (unit != null)
-        {
-            manager.actualPlayer = unit.GetComponent<Actor>();
-            cameraController.target = unit.transform;
-        }
+        units = cellGrid.Units.FindAll(u => u.PlayerNumber.Equals(PlayerNumber)).ToList();
+        NextMonster();
     }
 
     /// <summary>
@@ -34,6 +31,11 @@ class ShadowLordActor : HumanPlayer
     /// <returns>true = monster found and switched to it, false otherwise</returns>
     public bool NextMonster()
     {
-        return false;
+        if (!units.Any()) { return false; }
+        var unit = units[0];
+        units.RemoveAt(0);
+        manager.actualPlayer = unit.GetComponent<ShadowWorldUnit>();
+        cameraController.target = unit.transform;
+        return true;
     }
 }
