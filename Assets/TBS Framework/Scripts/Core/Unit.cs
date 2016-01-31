@@ -141,10 +141,17 @@ public abstract class Unit : MonoBehaviour
 
         if (HitPoints <= 0)
         {
-            if (UnitDestroyed != null)
-                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this, damage));
-            OnDestroyed();
+            Remove(other, damage);
         }
+    }
+
+    public void RemoveLater() { Invoke("RemoveDelegate", 1.0f); }
+    private void RemoveDelegate() { Remove(); }
+    private void Remove(Unit attacker = null, int damage = 0)
+    {
+        if (UnitDestroyed != null)
+            UnitDestroyed.Invoke(this, new AttackEventArgs(attacker, this, damage));
+        OnDestroyed();
     }
 
     public virtual void Move(Cell destinationCell, List<Cell> path)
